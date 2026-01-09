@@ -4,50 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="aluno.css">
-    <title>Document</title>
+    <title>Login - Boletim do Aluno</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica:ital@0;1&family=Permanent+Marker&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Satisfy&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <main class="container">
-
         <div class="background">
-
             <div class="title-background">Boletim do Aluno</div>
             
             <div class="login-container">
-
-                <form action="">
-
+                <form id="loginForm">
                     <div class="campo">
-
-                    <label for="user">Usuário:</label>
-
-                    <input required type="text" id="user" name="usuario_cliente" placeholder="">
-
+                        <label for="user">Usuário:</label>
+                        <input required type="text" id="user" name="usuario_cliente">
                     </div>
 
                     <div class="campo">
-
                         <label for="pass">Senha:</label>
-
-                        <input type="password" id="pass" name="senha_cliente">
-
+                        <input required type="password" id="pass" name="senha_cliente">
                     </div>
 
                     <button class="botao-entrar" type="submit">Entrar</button>
-
                 </form>
-
             </div>
-
         </div>
-
     </main>
 
     <div class="back"><a href="/home/home.html">Voltar</a></div>
-    
+
+    <script>
+    const loginForm = document.getElementById('loginForm');
+
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const usuario_cliente = document.getElementById('user').value;
+        const senha_cliente = document.getElementById('pass').value;
+
+        try {
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ usuario_cliente, senha_cliente })
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                // SALVA O ID NO NAVEGADOR
+                localStorage.setItem('id_aluno', result.id_aluno);
+                
+                alert('Login com sucesso!');
+                window.location.href = "../boletim/boletim.html";
+            } else {
+                alert(result.message);
+            }
+        } catch (error) {
+            alert('Erro ao conectar ao servidor.');
+        }
+    });
+    </script>
 </body>
 </html>

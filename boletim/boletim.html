@@ -19,11 +19,69 @@
 
              <div class="container-campos">
                 
-                <div class="campo"><a href="/boletim/gestao/gestao.html">Gestão e Tecnologia</a></div>
+                <div class="campo" id="curso-gestao" style="display: none;">
+                    <a href="/boletim/gestao/gestao.html">Gestão e Tecnologia</a>
+                </div>
 
-                <div class="campo"><a href="/boletim/hardware/hardware.html">Hardware</a></div>
+                <div class="campo" id="curso-hardware" style="display: none;">
+                    <a href="/boletim/hardware/hardware.html">Hardware</a>
+                </div>
 
-                <div class="campo"><a href="/boletim/ingles/ingles.html">Inglês</a></div>
+                <div class="campo" id="curso-ingles" style="display: none;">
+                    <a href="/boletim/ingles/ingles.html">Inglês</a>
+                </div>
+
+                
+                <script>
+                    async function carregarCursos() {
+                        // Tenta recuperar o ID salvo no login
+                        const idAluno = localStorage.getItem('id_aluno');
+                        
+                        // Se não existir, bloqueia o acesso
+                        if (!idAluno || idAluno === "undefined") {
+                            alert("Sessão expirada ou acesso não autorizado.");
+                            window.location.href = "../aluno/aluno.html";
+                            return;
+                        }
+
+                        try {
+                            const response = await fetch(`http://localhost:3000/meus-cursos/${idAluno}`);
+                            const cursosMatriculados = await response.json();
+
+                            // Mapeamento de IDs do HTML para nomes que vem do Banco
+                            const mapaCursos = {
+                                'gestão': 'curso-gestao',
+                                'hardware': 'curso-hardware',
+                                'inglês': 'curso-ingles',
+                                'ingles': 'curso-ingles'
+                            };
+
+                            cursosMatriculados.forEach(nomeBanco => {
+                                const nomeMinusculo = nomeBanco.toLowerCase();
+                                
+                                // Procura se o nome do curso do banco bate com algum ID nosso
+                                for (let chave in mapaCursos) {
+                                    if (nomeMinusculo.includes(chave)) {
+                                        const elemento = document.getElementById(mapaCursos[chave]);
+                                        if (elemento) elemento.style.display = 'block';
+                                    }
+                                }
+                            });
+
+                            if (cursosMatriculados.length > 0) {
+                                document.querySelector('.title-boletim').innerText = "Cursos disponíveis:";
+                            } else {
+                                document.querySelector('.title-boletim').innerText = "Nenhum curso encontrado.";
+                            }
+
+                        } catch (error) {
+                            console.error("Erro ao carregar cursos:", error);
+                        }
+                    }
+
+                    window.onload = carregarCursos;
+                </script>
+
 
             </div>   
 
