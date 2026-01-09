@@ -1,0 +1,109 @@
+body{
+    background-color: #57564F;
+}
+
+.background {
+    margin-top: 50px;
+    margin-left: 20px;
+    background-color: #DDDAD0;
+    height: 500px;
+    width: 400px;
+    border-radius: 50px;
+    text-align: center;
+    font-family: poppins;
+    border: 3px solid #131010;
+    
+}
+
+.title-background {
+    background-color: #7A7A73;
+    padding: 30px 10px;
+    border-top-left-radius: 46px; /*arredonda a área do selecione*/
+    border-top-right-radius: 46px; /*arredonda a área do selecione*/
+    font-family: poppins;
+    font-size: 40px;
+    border-bottom: 3px solid #131010;
+}
+
+.login-container{
+    align-items: center;
+    margin-top: 90px;
+    font-family: poppins;
+}
+
+/*tira aquela estilização de caixa dos campos*/
+input{
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 20px;
+}
+
+.campo{
+    margin: 30px 30px;
+    background-color: #7A7A73;
+    padding: 10px 10px;
+    border-radius: 30px;
+    border: 2px solid #131010;
+}
+
+/*quando o mouse passar nos campos*/
+.campo:hover{
+    color: #DDDAD0;
+    background-color: #57564F;
+    transition: 0.5s;
+}
+
+/*colore o texto dentro da caixa*/
+input::placeholder{
+    color: #DDDAD0;
+}
+
+/*tira aquela estilização de caixa do botão*/
+button{
+    border: none;
+    background: transparent;
+    
+}
+
+/*estiliza o botão*/
+.botao-entrar{
+    background-color: #7A7A73;
+    width: 100px;
+    height: 50px;
+    font-size: 25px;
+    border-radius: 80px;
+    margin-top: 10px;
+    border: 2px solid #131010;
+}
+
+/*quando o mouse passar em botão*/
+.botao-entrar:hover{
+    color: #DDDAD0;
+    background-color: #57564F;
+    transition: 0.5s;
+    transform: translateY(-3px); /* Faz ele dar um "pulinho" para cima */
+}
+
+.back{
+    font-family: poppins;
+    margin: 30px 20px 10px;
+    background-color: #7A7A73;
+    padding: 7px 7px;
+    display: inline-block;
+    border-radius: 30px;
+    border: 2px solid #131010 ;
+}
+
+.back:hover{
+    color: #DDDAD0;
+    background-color: #57564F;
+    transition: 0.5s;
+    transform: translateY(-3px); /* Faz ele dar um "pulinho" para cima */
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+

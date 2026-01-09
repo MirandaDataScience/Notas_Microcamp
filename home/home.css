@@ -1,0 +1,48 @@
+body{
+    background-color: #57564F;
+}
+
+.background {
+    margin-top: 50px;
+    margin-left: 20px;
+    background-color: #DDDAD0;
+    height: 500px;
+    width: 400px;
+    border-radius: 50px;
+    text-align: center;
+    font-family: poppins;
+    border: 3px solid #131010;
+    
+}
+
+.title-background {
+    background-color: #7A7A73;
+    padding: 30px 10px;
+    border-top-left-radius: 46px; /*arredonda a área do selecione*/
+    border-top-right-radius: 46px; /*arredonda a área do selecione*/
+    font-family: poppins;
+    font-size: 50px;
+    border-bottom: 3px solid #131010;
+}
+
+.option{
+    margin: 60px 30px ;
+    background-color: #7A7A73;
+    font-size: 50px;
+    border-radius: 50px;
+    border: 3px solid #131010;
+}
+/*quando o mouse passa em cima da div muda a cor*/
+.option:hover{
+    background-color: #57564F;
+}
+
+/*quando o mouse passar em cima fica branco a tag a*/
+.option:hover a{
+    color: #DDDAD0;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
